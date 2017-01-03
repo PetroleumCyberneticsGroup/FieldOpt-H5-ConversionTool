@@ -1,0 +1,74 @@
+# C++ objects and libs
+
+*.slo
+*.lo
+*.o
+*.a
+*.la
+*.lai
+*.so
+*.dll
+*.dylib
+
+# Qt-es
+
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+*.pro.user.*
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+*-build-*
+
+# QtCreator
+
+*.autosave
+
+#QtCtreator Qml
+*.qmlproject.user
+*.qmlproject.user.*
+
+# Build folders
+build-*
+
+# Compiled doxygen documentation
+doxygen/*
+
+# Local boost lib
+libs/*
+!libs/get_boost.sh
+
+# Manually compiled program
+build/*
+
+# Test folders
+test-*
+
+# Ignore ADGPRS output files
+*.SIM.H5
+*.vars.h5
+*.res_partition.bin
+*.log.txt
+
+# Ignore ECLIPSE output files
+*.DBG
+*.ECLEND
+*.EGRID
+*.GRID
+*.INIT
+*.INSPEC
+*.MSG
+*.RSM
+*.LOG
+*.ECLRUN
+*.h5
+*.PRT
+*.RSSPEC
+*.SMSPEC
+*.UNRST
+*.UNSMRY
+*.xml
+*.eclrun_dbg
