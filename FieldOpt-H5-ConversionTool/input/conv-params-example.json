@@ -1,0 +1,37 @@
+{
+    // H5-ConvertionTool need to create an Eclipse deck using an Eclipse data file.
+    // Therefore, we need have present/create an Eclipse data file that corresponds 
+    // to our ADGPRS model
+    "ECL_DATA_FILE_PATH" : "/home/bellout/WORK-3/D-WRKS-A_TOOLS/cases/Reek/ecl100_test/REEK_TEST.DATA",
+
+    // The root name of the Eclipse output files created from the conversion process
+    "BASE_NAME_ECL_OUTPUT" : "REEK_TEST",
+
+    // The directory to where to save the Eclipse output files
+    "OUTPUT_DIRECTORY" : "/home/bellout/WORK-3/D-WRKS-A_TOOLS/cases/Reek/test",
+
+    // The ADGPRS H5 file that will be treated
+    "ECL_DATA_FILE_PATH" : "/home/bellout/WORK-3/D-WRKS-A_TOOLS/cases/Reek/adgprs/REEK_BASE.vars.h5"
+
+}
+
+// JSON EXAMPLE
+
+// {
+//     "height" : 320,
+//     "some" :
+//     {
+//         "complex" :
+//         {
+//             "path" : "hello"
+//         }
+//     },
+//     "animals" :
+//     {
+//         "rabbit" : "white",
+//         "dog" : "brown",
+//         "cat" : "grey"
+//     },
+//     "fruits" : ["apple", "raspberry", "orange"],
+//     "matrix" : [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+// }
