@@ -1,5 +1,5 @@
 {
-    // H5-ConvertionTool need to create an Eclipse deck using an Eclipse data file.
+    // H5ConversionTool need to create an Eclipse deck using an Eclipse data file.
     // Therefore, we need have present/create an Eclipse data file that corresponds 
     // to our ADGPRS model
     "ECL_DATA_FILE_PATH" : "/home/bellout/WORK-3/D-WRKS-A_TOOLS/cases/Reek/ecl100_test/REEK_TEST.DATA",

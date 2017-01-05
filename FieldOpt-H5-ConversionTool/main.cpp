@@ -5,9 +5,20 @@
 // BOOST
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
-#include <boost/property_tree/detail/json_parser_read.hpp>
-#include <boost/property_tree/detail/json_parser_write.hpp>
-#include <boost/property_tree/detail/json_parser_error.hpp>
+//#include <boost/property_tree/detail/json_parser_read.hpp>
+//#include <boost/property_tree/detail/json_parser_write.hpp>
+//#include <boost/property_tree/detail/json_parser_error.hpp>
+
+// OPM: PARSER
+#include <opm/parser/eclipse/Parser/ParseContext.hpp>
+#include <opm/parser/eclipse/Parser/Parser.hpp>
+#include <opm/parser/eclipse/Utility/Functional.hpp>
+
+// OPM: OUTPUT
+#include <opm/output/eclipse/EclipseWriter.hpp>
+//#include <opm/output/eclipse/EclipseReader.hpp>
+
+#include "src/H5Conv.h"
 
 #include <vector>
 #include <H5Cpp.h>
@@ -17,65 +28,43 @@
 
 // ERT
 
-// Using namespaces
-using std::cout;
-using std::endl;
+// NAMESPACES
+//using boost::property_tree::ptree;
 using std::string;
-using boost::property_tree::ptree;
-
-
-void getParamFileName(){}
-void readParamFile(){}
-
-//void print(ptree const& pt)
-//{
-//    ptree::const_iterator end = pt.end();
-//
-//    for (ptree::const_iterator it = pt.begin(); it != end; ++it)
-//    {
-//        std::cout << it->first << ": " << it->second.get_value<std::string>() << std::endl;
-//        print(it->second);
-//    }
-//}
-
-const string
-        ECL_DATA_FILE_PATH, BASE_NAME_ECL_OUTPUT,
-        OUTPUT_DIRECTORY, ADGPRS_H5_FILE;
+using data::TargetType;
+using measure = UnitSystem::measure;
 
 int main(int argc, char *argv[]) {
 
-    // Get parameter file name getParamFileName()
-    string filename;
-    if (argc >= 2){
-        filename = argv[1]; // char
-    }else{
-        cout << "usage: " << argv[0] << "" << endl;
-        cout << "example: " << argv[0] << "" << endl;
+    // Setup Eclipse data structures
+    H5Conv Conversion(argc,*argv,(string)PROJECT_SOURCE_DIR);
 
-        filename = (string)PROJECT_SOURCE_DIR + "/input/conv-params.json";
-        cout << "Using input paramenters from default file:\n"
-             << filename << endl;
-        // exit(1);
+    // Read H5 data
+    Hdf5SummaryReader H5Data(Conversion.ADGPRS_H5_FILE);
+    auto pressure = H5Data.reservoir_pressure();
+    auto sgas = H5Data.sgas();
+    auto soil = H5Data.soil();
+    auto swat = H5Data.swat();
+
+    int first_tstep = 0;
+    int last_tstep = (int)H5Data.times_steps().size();
+
+    // Fill H5 data into Eclipse structures, then print Eclipse output files
+    for( int i = first_tstep; i < last_tstep; ++i ) {
+
+        time_t time_step = (time_t)(H5Data.times_steps()[i]*24*60*60); // convert tstep to secs
+
+        data::Solution sol;
+        sol.insert( "PRESSURE", measure::pressure , pressure[i], TargetType::RESTART_SOLUTION );
+        sol.insert( "SGAS",     measure::identity , sgas[i], TargetType::RESTART_SOLUTION );
+        sol.insert( "SOIL",     measure::identity , soil[i], TargetType::RESTART_SOLUTION );
+        sol.insert( "SWAT",     measure::identity , swat[i], TargetType::RESTART_SOLUTION );
+        // sol.insert( "RS",       measure::identity , pressure[i], TargetType::RESTART_SOLUTION );
+        // sol.insert( "RV",       measure::identity , pressure[i], TargetType::RESTART_SOLUTION );
+
+        // writeTimeStep() function accumulates given time steps
+        Conversion.eclWriter->writeTimeStep(i, false, time_step, sol, Conversion.wells);
     }
-
-    // Read json parameter file readParamFile()
-    ptree pt;
-    read_json(filename, pt);
-
-    // Load conversion variables
-      const string ECL_DATA_FILE_PATH = pt.get<string>("ECL_DATA_FILE_PATH");
-    const string BASE_NAME_ECL_OUTPUT = pt.get<string>("BASE_NAME_ECL_OUTPUT");
-        const string OUTPUT_DIRECTORY = pt.get<string>("OUTPUT_DIRECTORY");
-          const string ADGPRS_H5_FILE = pt.get<string>("ADGPRS_H5_FILE");
-
-    getParamFileName();
-    readParamFile();
-
-
-
-
-
-//    Hdf5SummaryReader H5Data("TEST");
 
     return 0;
 }
