@@ -7,6 +7,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 include_directories(${CMAKE_SOURCE_DIR})
 
+
 # HDF5
 find_package(HDF5 REQUIRED COMPONENTS CXX)
 add_definitions(${HDF5_DEFINITIONS})
@@ -58,7 +59,8 @@ set(HEADER_FILES ${HDF5READER_HEADER_FILES} ${ERT_HEADER_FILES})
 add_executable(H5_ConversionTool ${SOURCE_FILES} ${HEADER_FILES})
 target_link_libraries(H5_ConversionTool
         PUBLIC ${FIELDOPT_BUILD}/lib/libhdf5summaryreader.a
-        PUBLIC ${HDF5_LIBRARIES}
-        )
+        PUBLIC ${HDF5_LIBRARIES})
+target_compile_definitions(H5_ConversionTool
+        PRIVATE PROJECT_SOURCE_DIR="${PROJECT_SOURCE_DIR}")
 
 
