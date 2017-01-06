@@ -67,10 +67,10 @@ set(HEADER_FILES
         )
 
 # # EXECUTABLE TARGET
- add_executable(H5ConversionTool ${SOURCE_FILES} ${HEADER_FILES})
+ add_executable(H5-ConversionTool ${SOURCE_FILES} ${HEADER_FILES})
 
 # LINK LIBRARIES
- target_link_libraries(H5ConversionTool
+ target_link_libraries(H5-ConversionTool
          # FIELDOPT::HDF5SUMMARYREADER
          PUBLIC ${FIELDOPT_BUILD}/lib/libhdf5summaryreader.a
          # H5
@@ -119,7 +119,7 @@ set(HEADER_FILES
 #        "-lpthread;dl"
 #        )
 
-target_compile_definitions(H5ConversionTool
+target_compile_definitions(H5-ConversionTool
         PRIVATE PROJECT_SOURCE_DIR="${PROJECT_SOURCE_DIR}")
 
 # LIBRARY TARGET

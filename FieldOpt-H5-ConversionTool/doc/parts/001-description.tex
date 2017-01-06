@@ -1,0 +1,63 @@
+
+% -*- root: ../FieldOpt-H5-ConversionTool-doc.tex -*-
+
+% #############################################
+% DESCRIPTION
+\section{Description}
+
+FieldOpt's \texttt{H5-ConversionTool} reads 
+AD-GPRS result files in H5 format and transfers
+some of the data (currently reservoir pressure 
+and saturation) to output files in Eclipse 
+format.
+% 
+The Eclipse output data can then be visualized 
+effectively using the post-processing tool 
+ResInsight%
+\footnote{ResInsight is an open source, cross-platform 
+3D visualization, curve plotting and post processing 
+tool for Eclipse reservoir models and simulations.
+\url{http://resinsight.org/}}.\\
+
+
+\texttt{H5-ConversionTool} uses FieldOpt's 
+\texttt{Hdf5SummaryReader} library to read
+ADGPRS's reservoir simulation output data.
+% 
+It then uses code from the open-source software 
+project OPM\footnote{http://opm-project.org/} to 
+print this data in Eclipse output format, i.e., 
+\texttt{*.EGRID}, \texttt{*.INIT}, \texttt{*.RFT}, 
+\texttt{*.SMSPEC}, \texttt{*.UNRST}, and 
+\texttt{*.UNSMRY} files.
+
+% OPM FLOW
+% OPM Flow is a fully-implicit, black-oil simulator 
+% capable of running industry-standard simulation 
+% models. The simulator is implemented using automatic 
+% differentiation to enable rapid development of new 
+% fluid models.
+% http://opm-project.org/?page_id=19
+% http://opm-project.org/?page_id=231
+
+% RESINSIGHT
+% ResInsight is an open source, cross-platform 3D 
+% visualization, curve plotting and post processing 
+% tool for Eclipse reservoir models and simulations.
+% git@github.com:OPM/ResInsight.git
+% http://resinsight.org/
+
+% ERT
+% ERT is a software initially developed by Statoil 
+% which main feature is to handle several ECLIPSE 
+% simulations in an Ensemble setting. 
+% http://ert.nr.no/ert
+% git@github.com:Ensembles/ert.git
+
+
+% =============================================
+% \subsection{}
+
+% ---------------------------------------------
+% \subsubsection{}
+

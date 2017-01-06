@@ -104,3 +104,16 @@ int main(int argc, const char *argv[]) {
 
     return 0;
 }
+
+// ------
+// todo: exception handling
+// * For some yet unknown reason, the number of TSTEP calls in the Eclipse
+// DATA file needs to be equal or larger than the number of TSTEP calls in
+// the AD-GPRS simulation. Throw an exception call when this occurs and/or
+// fix this somehow. Probably an allocation issue.
+// Note: the STEP sizes need _not_ be the same, just the number of TSTEP calls.
+
+// ------
+// todo: tests
+// * supply a faulty parameter file, i.e., test parameter read function
+

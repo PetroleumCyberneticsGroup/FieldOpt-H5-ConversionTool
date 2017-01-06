@@ -12,26 +12,4 @@
 
     // The ADGPRS H5 file that will be treated
     "ADGPRS_H5_FILE" : "/home/bellout/WORK-3/D-WRKS-A_TOOLS/cases/Reek/adgprs/REEK_BASE.vars.h5"
-
 }
-
-// JSON EXAMPLE
-
-// {
-//     "height" : 320,
-//     "some" :
-//     {
-//         "complex" :
-//         {
-//             "path" : "hello"
-//         }
-//     },
-//     "animals" :
-//     {
-//         "rabbit" : "white",
-//         "dog" : "brown",
-//         "cat" : "grey"
-//     },
-//     "fruits" : ["apple", "raspberry", "orange"],
-//     "matrix" : [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-// }

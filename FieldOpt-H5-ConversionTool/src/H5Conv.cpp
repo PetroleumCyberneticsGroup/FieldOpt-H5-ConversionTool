@@ -20,6 +20,7 @@ void H5Conv::setupEclipseDataStructures() {
     // Read Eclipse deck; PARSER using with specific error-handling settings;
     // alt: InputError::IGNORE
     deck_ = Parser().parseFile(ECL_DATA_FILE_PATH, Opm::ParseContext({
+                { ParseContext::PARSE_MISSING_DIMS_KEYWORD , InputError::WARN },
                 { ParseContext::PARSE_RANDOM_TEXT , InputError::WARN },
                 { ParseContext::PARSE_UNKNOWN_KEYWORD , InputError::WARN },
                 { ParseContext::PARSE_RANDOM_SLASH , InputError::WARN },
@@ -32,7 +33,7 @@ void H5Conv::getParamFileName(int argc, const char *argv[], const string PROJECT
         file_path_ = argv[1]; // char
     }else{
         cout << "No parameter file passed as argument. "
-                "Correct usage is: " << argv[0] << "/path/to/conv-params.json" << endl;
+                "Correct usage is: " << argv[0] << " /path/to/conv-params.json" << endl;
 
         file_path_ = PROJECT_SOURCE_DIR_ + "/input/conv-params.json";
         cout << "Using input parameters from default file:\n"
