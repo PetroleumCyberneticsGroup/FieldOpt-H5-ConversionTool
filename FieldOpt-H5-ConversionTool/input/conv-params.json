@@ -1,15 +1,56 @@
-{
-    // H5ConversionTool need to create an Eclipse deck using an Eclipse data file.
-    // Therefore, we need have present/create an Eclipse data file that corresponds 
-    // to our ADGPRS model
-    "ECL_DATA_FILE_PATH" : "/home/bellout/WORK-3/D-WRKS-A_TOOLS/cases/Reek/ecl100_test/REEK_TEST.DATA",
+// Calling H5ConversionTool from build folder. This folder has the following 
+// folder location with respect to the example model data:
 
-    // The root name of the Eclipse output files created from the conversion process
-    "BASE_NAME_ECL_OUTPUT" : "REEK_TEST",
+// FieldOpt-H5-ConversionTool
+// |   
+// |---build-FieldOpt-H5-ConversionTool
+// |   |
+// |   \---bin/
+// |       H5-ConversionTool
+// |   \---.../
+// |   \---.../
+// |   LICENSE
+// |   README.md
+// |
+// |---FieldOpt-H5-ConversionTool
+// |   |   
+// |   \---doc
+// |   \---input
+// |   \---src
+// |   \---tests
+// |       \---example-model/
+// |           \---5spot/
+// |               \---inlcude/
+// |               \---inlcude_ecl/
+// |               \---output/
+// |               ECL_5SPOT.DATA
+// |               ECL_5SPOT.EGRID
+// |               ECL_5SPOT.GRID
+// |               ECL_5SPOT.INIT
+// |               ECL_5SPOT.gprs
+// |               conv-params-example.json
+// |   \---Model
+// |   CMakeLists.txt
+// |   main.cpp
+
+// example of use:
+// $cd FieldOpt-H5-ConversionTool/build-FieldOpt-H5-ConversionTool/bin
+// $./H5-ConversionTool ../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/conv-params-example.json
+
+// Modify the following file paths according to the location of your model files  
+// and where you have H5-ConversionTool installed.
+{
+    // H5-ConvertionTool needs to create an Eclipse deck using an Eclipse data 
+    // file. Therefore, we need have present/create an Eclipse data file that  
+    // corresponds to our ADGPRS model
+    "ECL_DATA_FILE_PATH" : "../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/ECL_5SPOT.DATA",
+
+    // The root name of the Eclipse output files created from conversion process
+    "BASE_NAME_ECL_OUTPUT" : "5SPOT_OUT",
 
     // The directory to where to save the Eclipse output files
-    "OUTPUT_DIRECTORY" : "/home/bellout/WORK-3/D-WRKS-A_TOOLS/cases/Reek/test",
+    "OUTPUT_DIRECTORY" : "../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/output",
 
     // The ADGPRS H5 file that will be treated
-    "ADGPRS_H5_FILE" : "/home/bellout/WORK-3/D-WRKS-A_TOOLS/cases/Reek/adgprs/REEK_BASE.vars.h5"
+    "ADGPRS_H5_FILE" : "../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/5SPOT.vars.h5"    
 }
