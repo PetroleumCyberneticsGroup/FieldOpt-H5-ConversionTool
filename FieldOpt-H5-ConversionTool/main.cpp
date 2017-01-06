@@ -30,26 +30,24 @@
 
 // NAMESPACES
 //using boost::property_tree::ptree;
+using namespace std;
 using std::string;
 using data::TargetType;
 using measure = UnitSystem::measure;
 
-int main(int argc, char *argv[]) {
+void outputEclipseDataFiles(Hdf5SummaryReader H5Data,
+                            EclipseWriter &eclWriter,
+                            data::Wells wells){
 
-    // Setup Eclipse data structures
-    H5Conv Conversion(argc,*argv,(string)PROJECT_SOURCE_DIR);
-
-    // Read H5 data
-    Hdf5SummaryReader H5Data(Conversion.ADGPRS_H5_FILE);
     auto pressure = H5Data.reservoir_pressure();
     auto sgas = H5Data.sgas();
     auto soil = H5Data.soil();
     auto swat = H5Data.swat();
 
-    int first_tstep = 0;
     int last_tstep = (int)H5Data.times_steps().size();
+    int first_tstep = 0;
 
-    // Fill H5 data into Eclipse structures, then print Eclipse output files
+    // to output folder defined in parameter file
     for( int i = first_tstep; i < last_tstep; ++i ) {
 
         time_t time_step = (time_t)(H5Data.times_steps()[i]*24*60*60); // convert tstep to secs
@@ -63,8 +61,46 @@ int main(int argc, char *argv[]) {
         // sol.insert( "RV",       measure::identity , pressure[i], TargetType::RESTART_SOLUTION );
 
         // writeTimeStep() function accumulates given time steps
-        Conversion.eclWriter->writeTimeStep(i, false, time_step, sol, Conversion.wells);
+        eclWriter.writeTimeStep(i, false, time_step, sol, wells);
     }
+
+}
+
+int main(int argc, const char *argv[]) {
+
+    // Setup Eclipse data structures
+    H5Conv Conversion(argc, argv,(string)PROJECT_SOURCE_DIR);
+
+    // ------
+    // todo
+    // Note: This part should be inside H5Conv::setupEclipseDataStructures(),
+    // but I'm having trouble initializing reference variables, or something...
+    // help.
+    //
+    // Set up Eclipse state and grid objects
+    EclipseState eclState = Parser::parse(Conversion.getDeck());
+    eclState.getIOConfig().setBaseName(Conversion.BASE_NAME_ECL_OUTPUT);
+    eclState.getIOConfig().setOutputDir(Conversion.OUTPUT_DIRECTORY);
+    const EclipseGrid& eclGrid = eclState.getInputGrid(); // const EclipseGrid&
+
+    EclipseWriter eclWriter(eclState, eclGrid);
+    eclWriter.writeInitial();
+    data::Wells wells;
+    // ------
+
+    // Read H5 data
+    Hdf5SummaryReader H5Data(Conversion.ADGPRS_H5_FILE);
+
+    // Fill H5 data into Eclipse structures, then print Eclipse result files
+    outputEclipseDataFiles(H5Data, eclWriter, wells);
+
+    cout << "----------------------------------------------------"
+         << "----------------------------------------------------\n"
+         << "Ignore the EGRID warning. Eclipse output files: "
+         << " *.EGRID, *.INIT, *.RFT, *.SMSPEC, *.UNRST, *.UNSMRY\n"
+         << "should have been created in output folder: "
+         << Conversion.OUTPUT_DIRECTORY << "\n"
+         << "You can now use ResInsight to analyze the results." << endl;
 
     return 0;
 }

@@ -26,7 +26,9 @@ using namespace std;
 using namespace Opm;
 
 class H5Conv {
+
 public:
+
     /*!
      * Convert AD-GPRS HDF5 summary file to Eclipse unformated ouput.
      *
@@ -34,29 +36,27 @@ public:
      * @param
      * @return
      */
-    // H5Conv(int argc, char *argv, const string PROJECT_SOURCE_DIR_);
-    H5Conv();
-    H5Conv(int argc, char *argv, const string PROJECT_SOURCE_DIR_);
+    H5Conv(int argc, const char *argv[], const string PROJECT_SOURCE_DIR_);
 
     // Simple variables
     string file_path_;
     string ECL_DATA_FILE_PATH, BASE_NAME_ECL_OUTPUT,
-            OUTPUT_DIRECTORY, ADGPRS_H5_FILE;
+           OUTPUT_DIRECTORY, ADGPRS_H5_FILE;
 
-    // int first_tstep;
-    // int last_tstep;
+    Deck deck_;
 
-    // Eclipse objects
-    EclipseWriter* eclWriter;
-    data::Wells wells;
+    // const EclipseGrid& eclGrid;
+    // [Keep for reference]
+    // EclipseGrid ignores ACTNUM in Deck, and therefore needs ACTNUM
+    // explicitly.  If a null pointer is passed, every cell is active.
+    // EclipseGrid(const Deck& deck, const int * actnum = nullptr);
 
-    // eclState
-    // eclGrid
+    // EclipseState eclState;
 
     /*!
      * Get json parameter file name
      */
-    void getParamFileName(int argc, char *argv, const string PROJECT_SOURCE_DIR_);
+    void getParamFileName(int argc, const char *argv[], const string PROJECT_SOURCE_DIR_);
 
     /*!
      * Read json parameter file and load conversion variables
@@ -69,8 +69,9 @@ public:
     void setupEclipseDataStructures();
 
     /*!
-     * Reads H5 summary data
-     */
+    * Return Deck object created in setupEclipseDataStructures()
+    */
+    Deck getDeck(){ return deck_; };
 
 private:
 };

@@ -48,10 +48,6 @@ find_library(ert_geometry NAMES ert_geometry REQUIRED)
 find_library(ert_util NAMES ert_util REQUIRED)
 find_library(ert_utilxx NAMES ert_utilxx REQUIRED)
 
-# ERT
-#set(ERT_DIR ../../OPM/ert)
-#set(ERT_HEADER_FILES ${ERT_DIR}/ecl/ecl_util.h)
-
 # ALL INCLUDE DIRECTORIES
 include_directories(
         ${HDF5_INCLUDE_DIRS}

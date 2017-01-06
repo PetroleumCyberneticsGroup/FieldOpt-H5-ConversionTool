@@ -7,7 +7,7 @@
 using boost::property_tree::ptree;
 using namespace Opm;
 
-H5Conv::H5Conv(int argc, char *argv, const string PROJECT_SOURCE_DIR_){
+H5Conv::H5Conv(int argc, const char *argv[], const string PROJECT_SOURCE_DIR_){
 
     getParamFileName(argc, argv, PROJECT_SOURCE_DIR_);
     readParamFile(file_path_);
@@ -15,28 +15,18 @@ H5Conv::H5Conv(int argc, char *argv, const string PROJECT_SOURCE_DIR_){
 
 }
 
-void H5Conv::setupEclipseDataStructures(){
+void H5Conv::setupEclipseDataStructures() {
 
     // Read Eclipse deck; PARSER using with specific error-handling settings;
     // alt: InputError::IGNORE
-    auto deck = Parser().parseFile(ECL_DATA_FILE_PATH, Opm::ParseContext({
-               { ParseContext::PARSE_RANDOM_TEXT , InputError::WARN },
-               { ParseContext::PARSE_UNKNOWN_KEYWORD , InputError::WARN },
-               { ParseContext::PARSE_RANDOM_SLASH , InputError::WARN },
-               { ParseContext::SUMMARY_UNKNOWN_WELL , InputError::WARN} }));
-
-    // Set up Eclipse state and grid objects
-    EclipseState eclState = Parser::parse(deck);
-    eclState.getIOConfig().setBaseName(BASE_NAME_ECL_OUTPUT);
-    eclState.getIOConfig().setOutputDir(OUTPUT_DIRECTORY);
-    auto& eclGrid = eclState.getInputGrid(); // EclipseGrid
-
-    EclipseWriter eclWriter(eclState, eclGrid);
-    eclWriter.writeInitial();
-    data::Wells wells;
+    deck_ = Parser().parseFile(ECL_DATA_FILE_PATH, Opm::ParseContext({
+                { ParseContext::PARSE_RANDOM_TEXT , InputError::WARN },
+                { ParseContext::PARSE_UNKNOWN_KEYWORD , InputError::WARN },
+                { ParseContext::PARSE_RANDOM_SLASH , InputError::WARN },
+                { ParseContext::SUMMARY_UNKNOWN_WELL , InputError::WARN} }));
 }
 
-void H5Conv::getParamFileName(int argc, char *argv, const string PROJECT_SOURCE_DIR_){
+void H5Conv::getParamFileName(int argc, const char *argv[], const string PROJECT_SOURCE_DIR_){
 
     if (argc >= 2){
         file_path_ = argv[1]; // char
@@ -63,6 +53,8 @@ void H5Conv::readParamFile(const string file_path){
     ADGPRS_H5_FILE = pt.get<std::string>("ADGPRS_H5_FILE");
 
     // Echo variables
+    cout << "----------------------------------------------------"
+         << "----------------------------------------------------" << endl;
     cout << "The following conversion parameters have been provided:" << endl;
     cout << "ECL_DATA_FILE_PATH:" << ECL_DATA_FILE_PATH << endl;
     cout << "BASE_NAME_ECL_OUTPUT:" << BASE_NAME_ECL_OUTPUT << endl;
