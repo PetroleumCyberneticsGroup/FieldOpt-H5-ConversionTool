@@ -2,7 +2,12 @@ cmake_minimum_required(VERSION 3.5)
 
 # PROJECT
 project(H5_ConversionTool VERSION 0.1 LANGUAGES CXX)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+# ============================================================
+# ASSIGN CMAKE_RUNTIME AND CMAKE_LIBRARY OUTPUT DIRECTORIES
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../build-FieldOpt-H5-ConversionTool/bin) # WORKING
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 include_directories(${CMAKE_SOURCE_DIR})
