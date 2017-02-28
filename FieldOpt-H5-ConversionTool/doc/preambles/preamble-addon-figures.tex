@@ -1,0 +1,30 @@
+% -*- root: ../kompendium.tex -*-
+%******************************************************************************
+% This preabmle contains packages needed to create figures and plots in LaTeX.
+%******************************************************************************
+
+\usepackage{etex}
+\usepackage{tikz,pgfplots}
+\usepackage[]{relsize}
+
+\pgfplotsset{compat=1.9}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes}
+\usetikzlibrary{3d}
+\usetikzlibrary{shadows}
+\usetikzlibrary{decorations}
+\usetikzlibrary{fit}
+% \usetikzlibrary{arrows,bending}
+
+% Brace
+\tikzset{
+    position label/.style={
+       below = 3pt,
+       text height = 1.5ex,
+       text depth = 1ex
+    },
+   brace/.style={
+     decoration={brace, mirror},
+     decorate
+   }
+}

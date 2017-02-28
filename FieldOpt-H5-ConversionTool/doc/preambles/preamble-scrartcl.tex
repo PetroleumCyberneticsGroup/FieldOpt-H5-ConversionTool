@@ -1,0 +1,149 @@
+\documentclass[english,11pt,a4paper]{scrartcl}
+\usepackage[T1]{fontenc} % --------------| More characters.
+\usepackage[utf8]{inputenc} % -----------| Direct use of scandinavian letters.
+\usepackage{float} % --------------------| More options for floats.
+\usepackage{graphicx} % -----------------| Support more image formats.
+\usepackage{booktabs} % -----------------| Better-looking tables.
+\usepackage{tabularx} % -----------------| Better tables
+\usepackage{subfig} % -------------------| Subfigures.
+\usepackage[a4paper]{geometry} % --------| Adjusting page margins. % showframe
+\usepackage{amsmath,amssymb,amsfonts} % -| Various math, including eqref.
+\usepackage{xcolor} % -------------------| Allows defn. of custom colors.
+\usepackage{babel}
+\usepackage{url}
+\usepackage{enumitem} % -----------------| Used to adjust spacing in lists
+% \usepackage[boxed]{algorithm2e} % -------| Used to typeset algorithms
+% Breaks with \bibliography on bhome
+
+% XY-PIC. USED FOR CREATING ILLUSTRATIONS.
+\input xy
+\xyoption{all}
+
+% STYLING CAPTIONS
+\usepackage{caption}
+\captionsetup{margin=10pt,font=small,labelfont=bf}
+% \usepackage{fancyhdr} % -----------------| % NOT WITH KOMA-Script
+
+% HYPERLINK CUSTOMIZATION
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={My title},    % title
+    pdfauthor={Author},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={keyword1, key2, key3}, % list of keywords
+    pdfnewwindow=true,      % links in new PDF window
+    colorlinks=false,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+% PACKAGES ADDED BY MB
+% [TEXT]
+\usepackage{comment} % ------------------|
+\usepackage{soul} % ---------------------|
+\usepackage{nth} % ----------------------|
+\usepackage{ulem} % ---------------------|
+\usepackage{setspace} % -----------------| 
+
+% [LAYOUT]
+\setlength\parindent{0pt}
+\addtolength{\voffset}{0pt}
+\addtolength{\voffset}{0pt}
+\addtolength{\textheight}{0pt}
+\addtolength{\textwidth}{00pt}
+% \usepackage{showframe}
+
+% Listings ==================================================================================
+\RequirePackage{listings} % -----------------------| Used for source code listings.
+\definecolor{lst-gray}{RGB}{100,100,100}  % ---|Color for line-numbers.
+\definecolor{lst-light-gray}{RGB}{250,250,250} % Background color for listings.
+\definecolor{lst-dark-green}{RGB}{45,111,0} % -| Dark green for comments.
+\lstset{
+  aboveskip=0em, % -------------------| Skip above listing box.
+  backgroundcolor=\color{lst-light-gray}, % Background color.
+  basicstyle=\ttfamily\scriptsize, % -| Default font style.
+  belowskip=\topskip, % --------------| Skip below listing box.
+  breakatwhitespace=false, % ---------| Automatic breaks only at whitespace?.
+  breaklines=true, % -----------------| Sets automatic line breaking.
+  captionpos=t, % --------------------| Sets the caption-position to bottom.
+  commentstyle=\color{lst-dark-green}, % ------| Comment style.
+  escapeinside={\%*}{*)}, % ----------| For adding LaTeX within code.
+  frame=single, % --------------------| Adds a frame around the code.
+  keepspaces=true, % -----------------| Keeps spaces in text.
+  keywordstyle=\color{blue}, %--------| Keyword style.
+  % 
+  language={C}, % --------------------| The language of the code.
+  % 
+  literate={æ}{{\ae}}1 % -------------| Character conversions
+           {Æ}{{\AE}}1
+           {ø}{{\oe}}1
+           {Ø}{{\OE}}1
+           {å}{{\aa}}1
+           {Å}{{\AA}}1
+           {µ}{{\ensuremath{\mu}}}1,
+  % numbers=left, % --------------------| Line-number position: none/left/right.
+  % numbersep=5pt, % -------------------| Distance between line-numbers and code.
+  % numberstyle=\tiny\color{lst-gray}, %| The style that used for line-numbers.
+  rulecolor=\color{black}, % ---------| Frame color.
+  showspaces=false, % ----------------| Show spaces with underscores.
+  showstringspaces=false, % ----------| Underline spaces within strings.
+  showtabs=false, % ------------------| Show tabs with underscores.
+  stepnumber=1, %---------------------| Step between two line-numbers..
+  stringstyle=\color{red}, % ---------| String literal style.
+  tabsize=4, % -----------------------| Sets default tabsize to 2 spaces.
+  title=\lstname % -------------------| Show the filename of included file.
+}
+
+% [COLOR]
+\usepackage{color}% ---------------------|
+\usepackage{colortbl}% ------------------|
+% 
+% [REFERENCES]
+% \usepackage[round]{natbib}% -------------|
+% \usepackage[square,numbers]{natbib}% --|
+\usepackage[authoryear]{natbib}% --------|
+\usepackage{bibentry} % -----------------|
+% 
+% [TABLE]
+\usepackage{longtable} % ----------------|
+\usepackage{multirow} % -----------------|
+
+% [EXTRA: INPUT/OUTPUT]
+\usepackage{pdfpages}
+
+% [EXTRA: FORCED LINEBREAK W/I TABULAR]
+\usepackage{pbox}
+% cmd: \pbox{9cm}{1\\2}
+
+% [EXTRA: REG.CIRCLE]
+\usepackage{textcomp}
+% cmds: \textregistered\textcopyright
+% \sffamily\textregistered\textcopyright 
+
+% [EXTRA: WATERMARK]
+% \usepackage{draftwatermark}
+% \SetWatermarkText{DRAFT}
+% \SetWatermarkScale{1.8}
+
+% [EXPERIMENTAL]
+\usepackage{xspace} % for special highlighting
+\usepackage{ragged2e} % justifying
+
+
+
+
+
+
+
+
+
