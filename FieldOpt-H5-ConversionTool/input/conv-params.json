@@ -18,7 +18,7 @@
 // |   \---input
 // |   \---src
 // |   \---tests
-// |       \---example-model/
+// |       \---example/
 // |           \---5spot/
 // |               \---inlcude/
 // |               \---inlcude_ecl/
@@ -35,7 +35,7 @@
 
 // example of use:
 // $cd FieldOpt-H5-ConversionTool/build-FieldOpt-H5-ConversionTool/bin
-// $./H5-ConversionTool ../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/conv-params-example.json
+// $./H5-ConversionTool ../../FieldOpt-H5-ConversionTool/tests/example/5spot/conv-params-example.json
 
 // Modify the following file paths according to the location of your model files  
 // and where you have H5-ConversionTool installed.
@@ -43,14 +43,14 @@
     // H5-ConvertionTool needs to create an Eclipse deck using an Eclipse data 
     // file. Therefore, we need have present/create an Eclipse data file that  
     // corresponds to our ADGPRS model
-    "ECL_DATA_FILE_PATH" : "../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/ECL_5SPOT.DATA",
+    "ECL_DATA_FILE_PATH" : "../../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/ECL_5SPOT.DATA",
 
     // The root name of the Eclipse output files created from conversion process
     "BASE_NAME_ECL_OUTPUT" : "5SPOT_OUT",
 
     // The directory to where to save the Eclipse output files
-    "OUTPUT_DIRECTORY" : "../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/output",
+    "OUTPUT_DIRECTORY" : "../../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/output",
 
     // The ADGPRS H5 file that will be treated
-    "ADGPRS_H5_FILE" : "../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/5SPOT.vars.h5"    
+    "ADGPRS_H5_FILE" : "../../../FieldOpt-H5-ConversionTool/tests/example-model/5spot/5SPOT.vars.h5"    
 }
