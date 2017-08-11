@@ -84,30 +84,30 @@ add_executable(H5-ConversionTool ${SOURCE_FILES} ${HEADER_FILES})
          # H5
          PUBLIC ${HDF5_LIBRARIES}
          # OPM
-         PUBLIC /usr/local/lib/x86_64-linux-gnu/libopmcommon.a
-         PUBLIC /usr/local/lib/x86_64-linux-gnu/libopmoutput.a
-         PUBLIC /usr/local/lib/x86_64-linux-gnu/libopmparser.a
-         PUBLIC /usr/local/lib/x86_64-linux-gnu/libopmjson.a
+#         PUBLIC /usr/local/lib/x86_64-linux-gnu/libopmcommon.a
+#         PUBLIC /usr/local/lib/x86_64-linux-gnu/libopmoutput.a
+#         PUBLIC /usr/local/lib/x86_64-linux-gnu/libopmparser.a
+#         PUBLIC /usr/local/lib/x86_64-linux-gnu/libopmjson.a
          #
-#         PUBLIC ${OPM_DIR}/build-opm-common/lib/libopmcommon.a
-#         PUBLIC ${OPM_DIR}/build-opm-output/lib/libopmoutput.a
-#         PUBLIC ${OPM_DIR}/build-opm-parser/lib/x86_64-linux-gnu/libopmparser.a
-#         PUBLIC ${OPM_DIR}/build-opm-parser/lib/x86_64-linux-gnu/libopmjson.a
+         PUBLIC ${OPM_DIR}/build-opm-common/lib/libopmcommon.a
+         PUBLIC ${OPM_DIR}/build-opm-output/lib/libopmoutput.a
+         PUBLIC ${OPM_DIR}/build-opm-parser/lib/x86_64-linux-gnu/libopmparser.a
+         PUBLIC ${OPM_DIR}/build-opm-parser/lib/x86_64-linux-gnu/libopmjson.a
          # BOOST
          PUBLIC ${Boost_LIBRARIES}
          # ERT
-         PUBLIC ${ERT_STANDARD}/libecl.so
-         PUBLIC ${ERT_STANDARD}/libeclxx.so
-         PUBLIC ${ERT_STANDARD}/libecl_well.so
-         PUBLIC ${ERT_STANDARD}/libert_geometry.so
-         PUBLIC ${ERT_STANDARD}/libert_util.so
-         PUBLIC ${ERT_STANDARD}/libert_utilxx.so
-#         PUBLIC ${ert_ecl}
-#         PUBLIC ${ert_eclxx}
-#         PUBLIC ${ert_well}
-#         PUBLIC ${ert_geometry}
-#         PUBLIC ${ert_util}
-#         PUBLIC ${ert_utilxx}
+#         PUBLIC ${ERT_STANDARD}/libecl.so
+#         PUBLIC ${ERT_STANDARD}/libeclxx.so
+#         PUBLIC ${ERT_STANDARD}/libecl_well.so
+#         PUBLIC ${ERT_STANDARD}/libert_geometry.so
+#         PUBLIC ${ERT_STANDARD}/libert_util.so
+#         PUBLIC ${ERT_STANDARD}/libert_utilxx.so
+         PUBLIC ${ert_ecl}
+         PUBLIC ${ert_eclxx}
+         PUBLIC ${ert_well}
+         PUBLIC ${ert_geometry}
+         PUBLIC ${ert_util}
+         PUBLIC ${ert_utilxx}
          )
 
 ## LINK LIBRARIES (KEEP FOR REFERENCE)
