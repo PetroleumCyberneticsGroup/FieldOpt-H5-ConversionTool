@@ -29,7 +29,7 @@ void H5Conv::setupEclipseDataStructures() {
         throw std::runtime_error("ECL_DATA_FILE_PATH not found!");
     } else {
         cout << "ECL_DATA_FILE_PATH exists." << endl
-             << CYAN << "Running parser..." << END << endl;
+             << CYAN << "Parse deck..." << END << endl;
         try {
             deck_ = Parser().parseFile(
                 ECL_DATA_FILE_PATH, Opm::ParseContext(
@@ -43,7 +43,7 @@ void H5Conv::setupEclipseDataStructures() {
                 cout << "-- Deck status --" << endl;
                 cout << "Total # of keywords: " << deck_.size() << endl;
                 cout << "Unit system: " << deck_.getActiveUnitSystem().getName() << endl;
-                for(int ii=0; ii < deck_.size(); ++ii){
+                for(int ii=0; ii < deck_.size(); ++ii) {
                     if (deck_.getKeyword(ii).name() == "INIT" ||
                         deck_.getKeyword(ii).name() == "GRID")
                     cout << "Keyword[" << ii << "]:"
